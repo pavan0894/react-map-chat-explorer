@@ -1,6 +1,5 @@
-
 import React, { useEffect, useRef } from 'react';
-import { ArrowRight, Database, Globe, MapPin, MessageSquare, Server } from 'lucide-react';
+import { ArrowRight, ArrowDown, Database, Globe, MapPin, MessageSquare, Server } from 'lucide-react';
 
 const DiagramNode: React.FC<{
   title: string;
@@ -34,7 +33,11 @@ const DiagramConnection: React.FC<{
       
       <div className={`absolute diagram-arrow ${direction === 'horizontal' ? 'right-0' : 'bottom-0'}`}
            style={{ animationDelay: `${delay + 400}ms` }}>
-        <ArrowRight className={`text-gray-400 animate-pulse-subtle ${direction === 'vertical' ? 'transform rotate-90' : ''}`} size={16} />
+        {direction === 'horizontal' ? (
+          <ArrowRight className="text-diagram-line w-5 h-5 animate-pulse-subtle" />
+        ) : (
+          <ArrowDown className="text-diagram-line w-5 h-5 animate-pulse-subtle" />
+        )}
       </div>
       
       {label && (
@@ -75,7 +78,6 @@ const ArchitectureDiagram: React.FC = () => {
 
   return (
     <div ref={containerRef} className="diagram-container relative w-full overflow-hidden py-10">
-      {/* Background styling */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl -z-10"></div>
       <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-100/30 rounded-full blur-3xl -z-10"></div>
       
@@ -88,7 +90,6 @@ const ArchitectureDiagram: React.FC = () => {
         </div>
         
         <div className="flex flex-col items-center">
-          {/* Frontend Layer */}
           <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
             <DiagramNode 
               title="React Frontend" 
@@ -111,7 +112,6 @@ const ArchitectureDiagram: React.FC = () => {
           
           <DiagramConnection direction="vertical" label="Coordinates" delay={750} />
           
-          {/* Backend Layer */}
           <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
             <DiagramNode 
               title="Python Backend" 
@@ -134,7 +134,6 @@ const ArchitectureDiagram: React.FC = () => {
           
           <DiagramConnection direction="vertical" label="JSON Payload" delay={1100} />
           
-          {/* Service Layer */}
           <DiagramNode 
             title="Azure OpenAI Service" 
             icon={<MessageSquare className="text-diagram-azure animate-pulse-subtle" />}
@@ -144,7 +143,6 @@ const ArchitectureDiagram: React.FC = () => {
           />
         </div>
         
-        {/* Data flow description */}
         <div className="mt-12 max-w-2xl mx-auto">
           <div className="bg-white/70 backdrop-blur-sm rounded-lg p-4 border border-gray-100 animate-fade-in" style={{ animationDelay: '1200ms' }}>
             <h3 className="font-medium mb-2 text-gray-800">Data Flow</h3>
