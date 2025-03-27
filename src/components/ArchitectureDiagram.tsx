@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { ArrowRight, ArrowDown, ArrowLeftRight, ArrowsUpDown, Database, Globe, MapPin, MessageSquare, Server } from 'lucide-react';
+import { ArrowRight, ArrowDown, ArrowLeftRight, ArrowUpDown, Database, Globe, MapPin, MessageSquare, Server } from 'lucide-react';
 
 const DiagramNode: React.FC<{
   title: string;
@@ -39,7 +39,7 @@ const DiagramConnection: React.FC<{
           direction === 'horizontal' ? (
             <ArrowLeftRight className="text-diagram-line w-5 h-5 animate-pulse-subtle" />
           ) : (
-            <ArrowsUpDown className="text-diagram-line w-5 h-5 animate-pulse-subtle" />
+            <ArrowUpDown className="text-diagram-line w-5 h-5 animate-pulse-subtle" />
           )
         ) : (
           direction === 'horizontal' ? (
