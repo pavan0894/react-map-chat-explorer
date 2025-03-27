@@ -1,5 +1,6 @@
+
 import React, { useEffect, useRef } from 'react';
-import { ArrowRight, ArrowDown, Database, Globe, MapPin, MessageSquare, Server } from 'lucide-react';
+import { ArrowRight, ArrowDown, ArrowLeftRight, ArrowsUpDown, Database, Globe, MapPin, MessageSquare, Server } from 'lucide-react';
 
 const DiagramNode: React.FC<{
   title: string;
@@ -22,10 +23,11 @@ const DiagramNode: React.FC<{
 
 const DiagramConnection: React.FC<{
   direction: 'horizontal' | 'vertical';
+  bidirectional?: boolean;
   label?: string;
   className?: string;
   delay?: number;
-}> = ({ direction, label, className, delay = 0 }) => {
+}> = ({ direction, bidirectional = true, label, className, delay = 0 }) => {
   return (
     <div className={`relative flex items-center justify-center ${direction === 'horizontal' ? 'w-32 h-6' : 'h-20 w-6'} ${className}`}>
       <div className={`absolute ${direction === 'horizontal' ? 'w-full h-[2px]' : 'h-full w-[2px]'} bg-diagram-line diagram-line animate-draw-line`} 
@@ -33,10 +35,18 @@ const DiagramConnection: React.FC<{
       
       <div className={`absolute diagram-arrow ${direction === 'horizontal' ? 'right-0' : 'bottom-0'}`}
            style={{ animationDelay: `${delay + 400}ms` }}>
-        {direction === 'horizontal' ? (
-          <ArrowRight className="text-diagram-line w-5 h-5 animate-pulse-subtle" />
+        {bidirectional ? (
+          direction === 'horizontal' ? (
+            <ArrowLeftRight className="text-diagram-line w-5 h-5 animate-pulse-subtle" />
+          ) : (
+            <ArrowsUpDown className="text-diagram-line w-5 h-5 animate-pulse-subtle" />
+          )
         ) : (
-          <ArrowDown className="text-diagram-line w-5 h-5 animate-pulse-subtle" />
+          direction === 'horizontal' ? (
+            <ArrowRight className="text-diagram-line w-5 h-5 animate-pulse-subtle" />
+          ) : (
+            <ArrowDown className="text-diagram-line w-5 h-5 animate-pulse-subtle" />
+          )
         )}
       </div>
       
