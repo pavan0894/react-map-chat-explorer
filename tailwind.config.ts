@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				diagram: {
+					react: '#61DAFB',
+					python: '#3776AB',
+					azure: '#0078D4',
+					mapbox: '#4264FB',
+					cbre: '#00A3E0',
+					line: '#D1D5DB',
+					frontend: '#F87171',
+					backend: '#60A5FA',
+					service: '#A78BFA'
 				}
 			},
 			borderRadius: {
@@ -84,11 +96,41 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-subtle': {
+					'0%, 100%': { opacity: 1 },
+					'50%': { opacity: 0.8 }
+				},
+				'fade-in-up': {
+					'0%': { opacity: 0, transform: 'translateY(20px)' },
+					'100%': { opacity: 1, transform: 'translateY(0)' }
+				},
+				'fade-in': {
+					'0%': { opacity: 0 },
+					'100%': { opacity: 1 }
+				},
+				'draw-line': {
+					'0%': { 'stroke-dashoffset': '1000' },
+					'100%': { 'stroke-dashoffset': '0' }
+				},
+				'rotate-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-subtle': 'pulse-subtle 3s ease-in-out infinite',
+				'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+				'fade-in': 'fade-in 0.8s ease-out forwards',
+				'draw-line': 'draw-line 1.5s ease-out forwards',
+				'rotate-slow': 'rotate-slow 10s linear infinite',
+				'float': 'float 3s ease-in-out infinite'
 			}
 		}
 	},
